@@ -1,0 +1,70 @@
+.checkbox {
+  margin: 0px 5px;
+}
+
+.input {
+  display: none;
+}
+
+.label {
+  cursor: pointer;
+  position: relative;
+  margin: auto;
+  width: 18px;
+  height: 18px;
+  -webkit-tap-highlight-color: transparent;
+  transform: translate3d(0, 0, 0);
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity .2s ease;
+  }
+}
+
+.svg {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  z-index: 1;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: #ffffff;
+  stroke-width: 1.5;
+  transform: translate3d(0, 0, 0);
+  transition: all .2s ease;
+
+  path {
+    stroke-dasharray: 60;
+    stroke-dashoffset: 0;
+  }
+
+  polyline {
+    stroke-dasharray: 22;
+    stroke-dashoffset: 66;
+  }
+}
+
+.input:checked + .label {
+  svg {
+    stroke: #ffffff;
+
+    path {
+      stroke-dashoffset: 60;
+      transition: all .3s linear;
+    }
+
+    polyline {
+      stroke-dashoffset: 42;
+      transition: all .2s linear;
+      transition-delay: .15s;
+    }
+  }
+}

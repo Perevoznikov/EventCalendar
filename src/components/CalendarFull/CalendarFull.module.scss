@@ -1,0 +1,64 @@
+.container {
+  width: 100%;
+  padding: 20px;
+}
+
+.header {
+  height: 60px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.months {
+  width: 100%;
+  padding: 20px 0 10px 0;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.4);
+}
+
+.calendarUI {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.today {
+  font-family: Poppins-Bold;
+  color: #cccccc;
+  text-transform: uppercase;
+  border: 2px solid #cccccc;
+  border-radius: 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: all ease-in .1s;
+  &:hover{
+    color: #999999;
+    border-color: #999999;
+  }
+}
+
+.lessDay {
+  color: #999999;
+}
+
+%day{
+  &:after{
+    content: ' ';
+    position: absolute;
+    left: 60%;
+    top: 30%;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+}
+.dayDone:after{
+  @extend %day;
+  background-color: #57b846;
+}
+.dayWork:after{
+  @extend %day;
+  background-color: red;
+}

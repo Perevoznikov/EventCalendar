@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.item {
+  font-family: Poppins-Bold;
+  letter-spacing: 1.5px;
+  color: #999;
+  cursor: pointer;
+  transition: color ease-in 0.1s;
+  padding: 4px;
+  user-select: none;
+  &:first-letter {
+    text-transform: uppercase;
+  }
+
+  &:hover {
+    color: #57b846;
+  }
+}
+
+.active {
+  color: #57b846;
+}

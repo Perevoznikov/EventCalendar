@@ -4,31 +4,31 @@
 [ FONT ]*/
 
 @font-face {
-  font-family: Poppins-Regular;
-  src: url('./assets/fonts/poppins/Poppins-Regular.ttf');
+  font-family: 'Poppins-Regular';
+  src: local('Poppins-Regular'), url(./assets/fonts/poppins/Poppins-Regular.ttf) format('truetype');
 }
 
 @font-face {
-  font-family: Poppins-Bold;
-  src: url('./assets/fonts/poppins/Poppins-Bold.ttf');
+  font-family: 'Poppins-Bold';
+  src: local('Poppins-Bold'), url(./assets/fonts/poppins/Poppins-Bold.ttf) format('truetype');
 }
 
 @font-face {
-  font-family: Poppins-Medium;
-  src: url('./assets/fonts/poppins/Poppins-Medium.ttf');
+  font-family: 'Poppins-Medium';
+  src: local('Poppins-Medium'), url(./assets/fonts/poppins/Poppins-Medium.ttf) format('truetype');
 }
 
 @font-face {
-  font-family: Montserrat-Bold;
-  src: url('./assets/fonts/montserrat/Montserrat-Bold.ttf');
+  font-family: 'Montserrat-Bold';
+  src: local('Montserrat-Bold'), url(./assets/fonts/montserrat/Montserrat-Bold.ttf) format('truetype');
 }
 
 /*//////////////////////////////////////////////////////////////////
 [ RESTYLE TAG ]*/
 
 * {
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -43,7 +43,7 @@ a {
   font-size: 14px;
   line-height: 1.7;
   color: #666666;
-  margin: 0px;
+  margin: 0;
   transition: all 0.4s;
 }
 
@@ -58,7 +58,7 @@ a:hover {
 
 /*---------------------------------------------*/
 h1,h2,h3,h4,h5,h6 {
-  margin: 0px;
+  margin: 0;
 }
 
 p {
@@ -66,11 +66,11 @@ p {
   font-size: 14px;
   line-height: 1.7;
   color: #666666;
-  margin: 0px;
+  margin: 0;
 }
 
 ul, li {
-  margin: 0px;
+  margin: 0;
   list-style-type: none;
 }
 

@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, memo} from 'react';
 import cl from './ViewDate.ui.module.scss'
 
 interface ViewDateUiProps {
@@ -19,4 +19,4 @@ const ViewDateUi: FC<ViewDateUiProps> = ({date, daysOfWeek = defaultDaysOfWeek})
     );
 };
 
-export default ViewDateUi;
+export default memo(ViewDateUi);

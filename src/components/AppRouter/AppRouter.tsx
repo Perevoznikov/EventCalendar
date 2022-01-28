@@ -1,19 +1,19 @@
 import React, {FC, useEffect} from 'react';
 import { Routes, Route, Navigate } from "react-router-dom";
-import AuthPage from "../pages/auth/auth.page";
-import AuthFormFc from "./AuthForm/AuthForm.fc";
-import RegistrationFormFc from "./RegistrationForm/RegistrationForm.fc";
-import {useAppSelector} from "../hooks/reduxHooks";
-import WorkplacePage from "../pages/workplace/workplace.page";
+import AuthPage from "../../pages/auth/auth.page";
+import AuthFormFc from "../AuthForm/AuthForm.fc";
+import RegistrationFormFc from "../RegistrationForm/RegistrationForm.fc";
+import {useAppSelector} from "../../hooks/reduxHooks";
 import {useDispatch} from "react-redux";
-import {AuthActionCreators} from "../store/reducers/auth/actionCreators";
+import {AuthActionCreators} from "../../store/reducers/auth/actionCreators";
+import WorkplacePage from "../../pages/workplace/workplace.page";
 
 interface AppRouterProps {}
 
 const AppRouter: FC<AppRouterProps> = () => {
     const {isAuth} = useAppSelector(state => state.auth)
-
     const dispatch = useDispatch()
+
     useEffect(() => {
         const jsonUser = localStorage.getItem('user')
         if (jsonUser) dispatch(AuthActionCreators.setAuth(JSON.parse(jsonUser)))
@@ -32,7 +32,7 @@ const AppRouter: FC<AppRouterProps> = () => {
         <Route path='*' element={<Navigate to='/' />}/>
     </Routes>
 
-    return isAuth?privateRoutes:publicRoutes;
+    return isAuth?privateRoutes:publicRoutes
 };
 
 export default AppRouter;

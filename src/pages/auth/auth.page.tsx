@@ -7,7 +7,7 @@ import Layout from "../layout/layout";
 
 interface AuthPageProps {}
 
-const AuthPage: FC<AuthPageProps> = ({children}) => {
+const AuthPage: FC<AuthPageProps> = () => {
     const {pathname} = useLocation();
     const isRegPath = matchPath("/registration", pathname);
     return (
@@ -20,8 +20,7 @@ const AuthPage: FC<AuthPageProps> = ({children}) => {
                     <Outlet/>
                     {isRegPath
                         ? <Link to='/' className={cl.link}><TiArrowLeftThick/> Login</Link>
-                        :
-                        <Link to='/registration' className={cl.link}>Create your Account <TiArrowRightThick/></Link>
+                        : <Link to='/registration' className={cl.link}>Create your Account <TiArrowRightThick/></Link>
                     }
                 </div>
             </div>

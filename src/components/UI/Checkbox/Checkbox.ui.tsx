@@ -1,4 +1,4 @@
-import React, {ChangeEventHandler, FC} from 'react';
+import React, {ChangeEventHandler, FC, memo} from 'react';
 import cl from './Checkbox.ui.module.scss'
 import {genId} from "../../../utils/utils";
 
@@ -26,4 +26,4 @@ const CheckboxUi: FC<CheckboxUiProps> = ({id = genId(), value, onChange}) => {
     );
 };
 
-export default CheckboxUi;
+export default memo(CheckboxUi);

@@ -1,10 +1,8 @@
-import React, {FC} from 'react';
-import {useDispatch} from "react-redux";
-import {AuthActionCreators} from "../../store/reducers/auth/actionCreators";
-import {useAppSelector} from "../../hooks/reduxHooks";
+import React, {FC, Suspense} from 'react';
 import cl from "./workplace.page.module.scss";
-import EventCalendar from "../../components/EventCalendar/EventCalendar";
 import Layout from "../layout/layout";
+import LoaderUi from "../../components/UI/Loader/Loader.ui";
+const EventCalendar = React.lazy(() => import("../../components/EventCalendar/EventCalendar"));
 
 interface WorkplacePageProps {
 
@@ -15,7 +13,9 @@ const WorkplacePage: FC<WorkplacePageProps> = () => {
         <Layout>
             <div className={cl.container}>
                 <div className={cl.body}>
-                    <EventCalendar/>
+                    <Suspense fallback={<LoaderUi/>}>
+                        <EventCalendar/>
+                    </Suspense>
                 </div>
             </div>
         </Layout>

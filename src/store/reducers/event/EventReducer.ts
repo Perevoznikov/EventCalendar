@@ -1,6 +1,4 @@
 import {EventAction, EventActionEnum, EventState} from "./types";
-import {genId} from "../../../utils/utils";
-
 const initialState: EventState = {
     events: [],
     error: '',

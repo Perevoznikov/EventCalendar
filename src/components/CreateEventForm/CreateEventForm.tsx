@@ -1,4 +1,4 @@
-import React, {FC, KeyboardEventHandler} from 'react';
+import React, {FC, memo} from 'react';
 import cl from './CreateEventForm.module.scss'
 import {BsFillPlusCircleFill} from "react-icons/bs";
 import InputUi from "../UI/Input/Input.ui";
@@ -43,4 +43,4 @@ const CreateEventForm: FC<CreateEventFormProps> = ({date}) => {
     );
 };
 
-export default CreateEventForm;
+export default memo(CreateEventForm);

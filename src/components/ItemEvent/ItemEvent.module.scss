@@ -1,29 +1,36 @@
-.li{
+.li {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   padding: 4px 5px;
   width: 100%;
+  transition: transform 200ms ease-in;
 }
-.text{
+
+.li.exit {
+  transform: translateX(-150%);
+}
+
+.text {
   padding-left: 10px;
   letter-spacing: 0.5px;
   line-height: 1.2;
   flex-shrink: 1;
 }
 
-.done{
+.done {
   text-decoration: line-through;
 }
 
-.delete{
+.delete {
   flex-shrink: 0;
   width: 30px;
   height: 30px;
   margin-left: auto;
   cursor: pointer;
   transition: color ease-in .1s, transform ease-in .3s;
-  &:hover{
+
+  &:hover {
     color: crimson;
     transform: rotateZ(180deg);
   }

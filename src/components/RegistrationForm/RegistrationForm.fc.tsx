@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 import cl from './RegistrationForm.fc.module.scss'
 import InputUi from "../UI/Input/Input.ui";
 import {MdEmail} from "react-icons/md";
@@ -9,6 +9,7 @@ import {AuthActionCreators} from "../../store/reducers/auth/actionCreators";
 import {IUserReg} from "../../models/IUser";
 import ButtonUi from "../UI/Button/Button.ui";
 import {useAppSelector} from "../../hooks/reduxHooks";
+import setModal from "../../utils/modals";
 
 interface RegistrationFormFcProps {}
 
@@ -21,12 +22,17 @@ interface IFormData {
 
 const RegistrationFormFc: FC<RegistrationFormFcProps> = () => {
     const {register, getValues, formState: {errors, isValid}, handleSubmit} = useForm<IFormData>({mode: "onChange"});
-    const {isLoading} = useAppSelector(state => state.auth)
+    const {isLoading, error} = useAppSelector(state => state.auth)
     const dispatch = useDispatch()
 
     const onSubmit: SubmitHandler<IFormData> = (data: IUserReg) => {
         dispatch(AuthActionCreators.registration(data))
     }
+
+    useEffect(() => {
+        !!error && setModal({text: error})
+        dispatch(AuthActionCreators.setError(''))
+    }, [error])
 
     return (
         <form className={cl.form} onSubmit={handleSubmit(onSubmit)}>

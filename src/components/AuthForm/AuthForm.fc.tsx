@@ -3,13 +3,13 @@ import cl from './AuthForm.fc.module.scss'
 import InputUi from "../UI/Input/Input.ui";
 import {MdEmail} from "react-icons/md";
 import {FaLock} from "react-icons/fa";
-import classNames from "classnames";
 import {SubmitHandler, useForm} from 'react-hook-form';
 import {useAppSelector} from "../../hooks/reduxHooks";
 import {AuthActionCreators} from "../../store/reducers/auth/actionCreators";
 import {IUserAuth} from "../../models/IUser";
 import {useDispatch} from "react-redux";
 import ButtonUi from "../UI/Button/Button.ui";
+import setModal from "../../utils/modals";
 
 interface AuthFormFcProps {
 }
@@ -21,12 +21,18 @@ interface IFormData {
 
 const AuthFormFc: FC<AuthFormFcProps> = () => {
     const {register, formState: {errors, isValid}, handleSubmit} = useForm<IFormData>({mode: "onChange"});
-    const {isLoading} = useAppSelector(state => state.auth)
+    const {isLoading, error} = useAppSelector(state => state.auth)
     const dispatch = useDispatch()
+
 
     const onSubmit: SubmitHandler<IFormData> = async (data: IUserAuth) => {
         dispatch(AuthActionCreators.login(data))
     };
+
+    useEffect(() => {
+        !!error && setModal({text: error})
+        dispatch(AuthActionCreators.setError(''))
+    }, [error])
 
     return (
             <form className={cl.form} onSubmit={handleSubmit(onSubmit)}>

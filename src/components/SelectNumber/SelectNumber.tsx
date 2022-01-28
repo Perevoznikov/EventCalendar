@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, {FC, memo} from 'react';
 import cl from './SelectNumber.module.scss'
 import {BsCaretLeftFill, BsCaretRightFill} from "react-icons/bs";
 
@@ -21,4 +21,4 @@ const SelectNumber: FC<SelectNumberProps> = ({value, onChange}) => {
     );
 };
 
-export default SelectNumber;
+export default memo(SelectNumber);

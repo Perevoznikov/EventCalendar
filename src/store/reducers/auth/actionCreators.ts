@@ -11,13 +11,17 @@ export const AuthActionCreators = {
     login: (user: IUserAuth) => async (dispatch: AppDispatch) => {
         try {
             dispatch(AuthActionCreators.setIsLoading(true))
-            const authUser = await UserService.authUser(user)
-            if (authUser.email !== ''){
-                dispatch(AuthActionCreators.setAuth(authUser))
-                localStorage.setItem('user', JSON.stringify(authUser))
+            const response = await UserService.authUser(user)
+            if(response instanceof Error) throw response
+
+            if (response.email !== ''){
+                dispatch(AuthActionCreators.setAuth(response))
+                localStorage.setItem('user', JSON.stringify(response))
+            } else {
+                dispatch(AuthActionCreators.setError('Incorrect login or password'))
             }
-        } catch (e) {
-            dispatch(AuthActionCreators.setError('Auth error'))
+        } catch (e: any) {
+            dispatch(AuthActionCreators.setError(e.message))
         } finally {
             dispatch(AuthActionCreators.setIsLoading(false))
         }
@@ -36,9 +40,14 @@ export const AuthActionCreators = {
     registration: (user: IUserReg) => async (dispatch: AppDispatch) => {
         try {
             dispatch(AuthActionCreators.setIsLoading(true))
-            const newUser = await UserService.createUser(user)
-            if (newUser.email !== ''){
-                dispatch(AuthActionCreators.setAuth(newUser))
+            const response = await UserService.createUser(user)
+            if(response instanceof Error) throw response
+
+            if (response.email !== ''){
+                dispatch(AuthActionCreators.setAuth(response))
+                localStorage.setItem('user', JSON.stringify(response))
+            } else {
+                dispatch(AuthActionCreators.setError('Registration error'))
             }
         } catch (e) {
             dispatch(AuthActionCreators.setError('Registration error'))

@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, memo} from 'react';
 import cl from './CalendarFull.module.scss';
 import './Calendar.scss'
 import Calendar, {CalendarTileProperties} from "react-calendar";
@@ -66,4 +66,4 @@ const CalendarFull: FC<CalendarFullProps> = ({date, onChange, getEvents}) => {
     );
 };
 
-export default CalendarFull;
+export default memo(CalendarFull);

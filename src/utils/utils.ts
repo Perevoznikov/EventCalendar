@@ -5,6 +5,10 @@ export const genId = (): string => {
     return id.toString()
 }
 
+export const getRandomInt = (max: number, min: number = 0) => {
+    return Math.floor(Math.random() * max) + min
+}
+
 export const getStringDate = (date: Date): string => {
     return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`
 }

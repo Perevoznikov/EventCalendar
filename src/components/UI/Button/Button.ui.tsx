@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, memo} from 'react';
 import cl from './Button.ui.module.scss'
 import classNames from "classnames";
 
@@ -15,4 +15,4 @@ const ButtonUi: FC<ButtonUiProps> = ({children, loading, ...props}) => {
     );
 };
 
-export default ButtonUi;
+export default memo(ButtonUi);

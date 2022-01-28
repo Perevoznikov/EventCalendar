@@ -20,10 +20,12 @@ export const EventActionCreators = {
     fetchEvents: () => async (dispatch: AppDispatch) => {
         try {
             dispatch(EventActionCreators.setIsLoading(true))
-            const events = await EventService.getEvents()
-            dispatch(EventActionCreators.setEvents(events))
-        } catch (e) {
-            console.log(e)
+            const response = await EventService.getEvents()
+            if (response instanceof Error) throw response
+
+            dispatch(EventActionCreators.setEvents(response))
+        } catch (e: any) {
+            dispatch(EventActionCreators.setError(e.message))
         } finally {
             dispatch(EventActionCreators.setIsLoading(false))
         }

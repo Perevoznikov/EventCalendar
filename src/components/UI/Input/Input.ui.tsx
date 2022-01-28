@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {memo} from 'react';
 import cl from './Input.ui.module.scss'
 import {IconContext, IconType} from 'react-icons';
 import classNames from "classnames";
@@ -33,4 +33,4 @@ const InputUi = React.forwardRef<HTMLInputElement, InputUiProps>(({Icon, error, 
     );
 })
 
-export default InputUi;
+export default memo(InputUi);

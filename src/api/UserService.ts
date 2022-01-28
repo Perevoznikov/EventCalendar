@@ -1,19 +1,12 @@
-import {IUserAuth, IUserReg} from "../models/IUser";
+import {IUser, IUserAuth, IUserReg} from "../models/IUser";
+import {getRandomInt} from "../utils/utils";
+import {USERS} from "./config/users";
 
 const delay = (time: number) => new Promise(res => setTimeout(res, time))
 
 class Database {
-    static users = [
-        {
-            name: 'admin',
-            email: 'admin@admin.ru',
-            password: '121212'
-        }
-    ]
-    static async getUsers() {
-        await delay(1000)
-        return this.users
-    }
+    static users = USERS
+
     static async createUser(user: any) {
         await delay(1000)
         this.users.push(user)
@@ -22,7 +15,7 @@ class Database {
     static async authUser(user: any) {
         await delay(1000)
         let result = {name: '', email: ''}
-        this.users.map((item) => {
+        this.users.forEach((item) => {
             if (item.email === user.email && item.password === user.password) {
                 result = {name: item.name, email: item.email}
             }
@@ -32,13 +25,14 @@ class Database {
 }
 
 export default class UserService {
-    static async getUsers() {
-        return await Database.getUsers()
+    static async createUser(user: IUserReg): Promise<IUser | Error> {
+        return (getRandomInt(10) > 2)
+            ? await Database.createUser(user)
+            : new Error('error create user request')
     }
-    static async createUser(user: IUserReg) {
-        return await Database.createUser(user)
-    }
-    static async authUser(user: IUserAuth) {
-        return await Database.authUser(user)
+    static async authUser(user: IUserAuth): Promise<IUser | Error> {
+        return (getRandomInt(10) > 2)
+            ? await Database.authUser(user)
+            : new Error('error auth request')
     }
 }

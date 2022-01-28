@@ -8,6 +8,8 @@ import CalendarFull from "../CalendarFull/CalendarFull";
 import {prepareEvents} from "../../utils/utils";
 import {EventActionCreators} from "../../store/reducers/event/actionCreators";
 import {useDispatch} from "react-redux";
+import LoaderUi from "../UI/Loader/Loader.ui";
+import setModal from "../../utils/modals";
 
 interface EventCalendarProps {
 
@@ -15,8 +17,9 @@ interface EventCalendarProps {
 
 const EventCalendar: FC<EventCalendarProps> = () => {
     const [date, setDate] = useState(new Date())
+    const {events, error, isLoading} = useAppSelector(state => state.event)
+    const dispatch = useDispatch()
 
-    const {events} = useAppSelector(state => state.event)
     const {getEventsInDate} = useMemo(() => {
         return prepareEvents(events)
     }, [events])
@@ -25,13 +28,18 @@ const EventCalendar: FC<EventCalendarProps> = () => {
         setDate(date)
     }
 
-    const dispatch = useDispatch()
     useEffect(() => {
         dispatch(EventActionCreators.fetchEvents())
     }, [])
 
+    useEffect(() => {
+        !!error && setModal({text: error})
+        dispatch(EventActionCreators.setError(''))
+    }, [error])
+
     return (
         <div className={cl.container}>
+            {isLoading && <LoaderUi/>}
             <div className={cl.aside}>
                 <div className={cl.currentDate}>
                     <ViewDateUi date={date}/>

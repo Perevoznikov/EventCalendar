@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, {FC, memo} from 'react';
 import cl from './SelectMonths.module.scss'
 import classNames from "classnames";
 
@@ -25,4 +25,4 @@ const SelectMonths: FC<SelectMonthsProps> = ({value, months = defaultMonths, onC
     );
 };
 
-export default SelectMonths;
+export default memo(SelectMonths);

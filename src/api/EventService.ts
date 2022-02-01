@@ -15,7 +15,7 @@ class Database {
 
 export default class EventService {
     static async getEvents(): Promise<IEvent[] | Error> {
-        return (getRandomInt(10) > 2)
+        return (getRandomInt(10) > 1)
             ? await Database.getEvents()
             : new Error('error events list request')
     }

@@ -26,12 +26,12 @@ class Database {
 
 export default class UserService {
     static async createUser(user: IUserReg): Promise<IUser | Error> {
-        return (getRandomInt(10) > 2)
+        return (getRandomInt(10) > 1)
             ? await Database.createUser(user)
             : new Error('error create user request')
     }
     static async authUser(user: IUserAuth): Promise<IUser | Error> {
-        return (getRandomInt(10) > 2)
+        return (getRandomInt(10) > 1)
             ? await Database.authUser(user)
             : new Error('error auth request')
     }
